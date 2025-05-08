@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h2>Upload to CIRCUITPY</h2>
+<h2>Upload to CIRCUITP Y</h2>
 <input type="file" id="file" onchange="upload()">
 <script>
 function upload() {
@@ -18,7 +18,8 @@ function upload() {
     body: formData
   })
   .then(res => res.text())
-  .then(txt => alert(txt));
+  .then(txt => alert(txt))
+  .catch(err => alert("Error: " + err));
 }
 </script>
 </body>
