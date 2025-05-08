@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h2>Upload a file to Raspberry Pi Pico</h2>
-<form method="POST" enctype="application/octet-stream" action="/">
-  <input type="file" id="file" onchange="upload()">
-</form>
+<h2>Upload to CIRCUITPY</h2>
+<input type="file" id="file" onchange="upload()">
 <script>
 function upload() {
-  const file = document.getElementById("file").files[0];
+  const fileInput = document.getElementById("file");
+  const file = fileInput.files[0];
+  const formData = new FormData();
+  formData.append("file", file);
+
   fetch("/", {
     method: "POST",
-    body: file
-  }).then(res => alert("Upload Complete"));
+    headers: {
+      "X-Filename": file.name
+    },
+    body: formData
+  })
+  .then(res => res.text())
+  .then(txt => alert(txt));
 }
 </script>
 </body>
