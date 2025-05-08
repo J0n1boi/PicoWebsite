@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h2>Upload to CIRCUITP Y</h2>
-<input type="file" id="file" onchange="upload()">
+<h2>Upload .dd File to CIRCUITPY</h2>
+<input type="file" id="file" accept=".dd" onchange="upload()">
 <script>
 function upload() {
   const fileInput = document.getElementById("file");
   const file = fileInput.files[0];
+  if (!file) return alert("No file selected");
+
   const formData = new FormData();
   formData.append("file", file);
 
